@@ -15,7 +15,7 @@
             @foreach($posts as $post)
                 <tr>
                     <td>{{ $post->id }}</td>
-                    <td>{{ $post->title }}</td>
+                    <td><a href="posts/{{ $post->id  }}">{{$post->title}} &rarr;</a></td>
                     <td>
                         <form action="/admin/posts/{{$post->id}}" method="post">
                             @csrf
