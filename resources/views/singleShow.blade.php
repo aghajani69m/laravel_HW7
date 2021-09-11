@@ -2,26 +2,42 @@
 
 
 @section('content')
-    <h1 class="my-4">{{ $post->title }}</h1>
+    <h1 class="my-8">{{ $post->title }}</h1>
 
     <!-- Blog Post -->
 
 
-        <div class="card mb-4">
+        <div class="card">
             <img class="card-img-top" src="http://placehold.it/750x300" alt="Card image cap">
             <div class="card-body">
                 <h2 class="card-title">{{ $post->title }}</h2>
                 <p class="card-text">{{ $post->body }}</p>
             </div>
             <div class="card-footer text-muted">
-                {{$post->created_at}}
+                <div class="btn-group">
+                    @if(auth()->user()->name == \App\Models\User::find("$post->user_id")->name)
+                    <form action="{{$post->id}}" method="post">
+                        @csrf
+                        @method('delete')
+                    <button type="submit" class="btn btn-md btn-outline-danger m-1">Delete</button>
+                    </form>
+                    <a href="{{$post->id}}/edit" type="button" class="btn btn-md btn-outline-secondary m-1">Edit</a>
+                        @endif
+                </div>
+                <h6>Posted By : @php
+                        echo \App\Models\User::find("$post->user_id")->name;
+                    @endphp
+                </h6>
+                @php echo "created at : " . $post->created_at ;
+                    if($post->created_at != $post->updated_at)  echo "updated at : " . $post->updated_at ;
+                @endphp
 
                 {{-- <ul>
                 @foreach($post->categories()->get() as $category)
                     <li>{{ $category->name }}</li>
                 @endforeach
                 </ul> --}}
-                
+
             </div>
         </div>
 

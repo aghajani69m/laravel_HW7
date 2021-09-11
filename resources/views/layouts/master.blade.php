@@ -15,7 +15,7 @@
     <!-- Custom styles for this template -->
     <link href="/css/blog-home.css" rel="stylesheet">
     <link rel="stylesheet" href="/css/app.css">
-   
+
 
 </head>
 
@@ -27,21 +27,10 @@
 <!-- Page Content -->
 <div class="container">
 
-    <div class="row">
-
         <!-- Blog Entries Column -->
-        <div class="col-md-8">
+        <div>
             @yield('content')
         </div>
-
-        <!-- Sidebar Widgets Column -->
-        <div class="col-md-4">
-            @section('sidebar')
-                @include('layouts.sidebar')
-            @show
-        </div>
-    </div>
-    <!-- /.row -->
 
 </div>
 <!-- /.container -->

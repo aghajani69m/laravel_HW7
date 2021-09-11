@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\PostRequest;
 use App\Models\Post;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class PostController extends Controller
@@ -16,10 +17,8 @@ class PostController extends Controller
      */
     public function index()
     {
-       
-        return view('admin.posts.index' , [
-            'posts' => Post::all()
-        ]);
+        $posts = auth()->user()->posts()->get();
+        return view('admin.posts.index')->with('posts',$posts);
     }
     /**
      * Display a list of the resource.
@@ -78,9 +77,11 @@ class PostController extends Controller
      */
     public function edit(Post $post)
     {
-        return view('admin.posts.edit' , [
-            'post' => $post
-        ]);
+        if(auth()->user()->name == \App\Models\User::find("$post->user_id")->name) {
+            return view('admin.posts.edit', [
+                'post' => $post
+            ]);
+        }else return back();
     }
 
     /**
@@ -96,7 +97,7 @@ class PostController extends Controller
 
         $post->update($validate_data);
 
-        $post->categories()->sync($validate_data['categories']);
+//        $post->categories()->sync($validate_data['categories']);
         return back();
     }
 
@@ -109,7 +110,6 @@ class PostController extends Controller
     public function destroy(Post $post)
     {
         $post->delete();
-
-        return back();
+        return redirect('admin/posts');
     }
 }
