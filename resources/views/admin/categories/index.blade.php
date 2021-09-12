@@ -20,7 +20,7 @@
                         <form action="/admin/posts/{{$post->id}}" method="post">
                             @csrf
                             @method('delete')
-                            <button class="btn btn-danger btn-lg">DELETE</button>
+                            <button class="btn btn-danger">delete</button>
                         </form>
                     </td>
                 </tr>

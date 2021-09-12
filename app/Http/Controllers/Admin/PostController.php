@@ -47,15 +47,12 @@ class PostController extends Controller
     public function store(PostRequest $request)
     {
         $validate_data = $request->validated();
+        $validate_data['slug'] =  str_replace(" ","-",$validate_data['title']);
+        $post = auth()->user()->posts()->create($validate_data);
 
-        $post = auth()->user()->posts()->create([
-            'title' => $validate_data['title'],
-            'body' => $validate_data['body'],
-        ]);
+//        $post->categories()->attach($validate_data['categories']);
 
-        $post->categories()->attach($validate_data['categories']);
-
-        return redirect('admin.posts.create');
+        return redirect('admin/posts');
     }
 
     /**

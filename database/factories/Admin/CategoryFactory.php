@@ -1,18 +1,18 @@
 <?php
 
-namespace Database\Factories;
+namespace Database\Factories\Admin;
 
-use App\Models\Tag;
+use App\Models\Admin\Category;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
-class TagFactory extends Factory
+class CategoryFactory extends Factory
 {
     /**
      * The name of the factory's corresponding model.
      *
      * @var string
      */
-    protected $model = Tag::class;
+    protected $model = Category::class;
 
     /**
      * Define the model's default state.
@@ -22,8 +22,7 @@ class TagFactory extends Factory
     public function definition()
     {
         return [
-            'title' => $title = $this->faker->text(20),
-            'slug' => str_replace(" ","-",$title)
+            //
         ];
     }
 }
