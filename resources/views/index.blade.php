@@ -3,7 +3,7 @@
 
 @section('content')
     <h1 class="my-4">Page Heading
-        <small>Secondary Text</small>
+        <small>BLOG</small>
     </h1>
 
     <!-- Blog Post -->
@@ -27,10 +27,10 @@
             </div>
 
             <div class=" justify-content-between align-items-center card-footer text-muted">
-                <h6>Posted By : @php
+                <h6>Posted By : <strong>@php
                 echo \App\Models\User::find("$post->user_id")->name;
                 @endphp
-                </h6>
+                    </strong></h6>
                <h6> Posted on : {{$post->created_at }}</h6>
             </div>
 
