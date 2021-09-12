@@ -13,7 +13,6 @@ class PostFactory extends Factory
      * @var string
      */
     protected $model = Post::class;
-
     /**
      * Define the model's default state.
      *
@@ -23,7 +22,7 @@ class PostFactory extends Factory
     {
         return [
             'user_id'=> rand(1,50),
-            'title' => $this->faker->text(50),
+            'title' => $this->faker->text(30),
             'slug' => $this->faker->slug(),
             'body' =>$this->faker->paragraph(rand(5,20))
         ];
