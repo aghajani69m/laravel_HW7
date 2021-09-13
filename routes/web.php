@@ -13,8 +13,11 @@
 
 use App\Http\Controllers\Admin\PostController;
 use App\Http\Controllers\HomeController;
-use App\Http\Controllers\TagController;
+use App\Http\Controllers\Admin\TagController;
+use App\Http\Controllers\Admin\CategoryController;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Route;
+
 Route::get('/',[HomeController::class,'home'])->name('index');
 // Route::get('/posts/{post}' , [PostController::class,'singleShow'])->name('singleShow');
 Route::get('/about',[HomeController::class,'about'])->name('about');
@@ -22,7 +25,8 @@ Route::get('/contact', [HomeController::class,'contact'])->name('contact');
 
 Route::prefix('admin')->middleware('auth')->group(function() {
     Route::resource('posts' , PostController::class);
+    Route::resource('categories', CategoryController::class);
+    Route::resource('tags', TagController::class);
 });
-Route::resource('tags', TagController::class);
 
 Auth::routes();

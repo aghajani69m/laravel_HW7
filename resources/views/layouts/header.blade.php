@@ -1,21 +1,18 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
     <div class="container">
-        <a class="navbar-brand" href="{{route('index')}}">My Blog</a>
+        <a class="navbar-brand" href="{{route('index')}}">Home Page </a>
         <div class="collapse navbar-collapse" id="navbarResponsive">
             <ul class="navbar-nav ml-auto">
                 @if(auth()->check())
-                <li class="nav-item active">
-                    <a class="nav-link" href="{{route('posts.index')}}">DashBoard</a>
-                </li>
-                    <li class="nav-item active">
-                        <a class="nav-link" href="{{route('posts.create')}}">Create POST</a>
+                    <li class="nav-item ">
+                        <a class="nav-link" href="{{route('posts.index')}}">POSTS</a>
                     </li>
-{{--                    <li class="nav-item active">--}}
-{{--                        <a class="nav-link" href="{{route('tags.create')}}">Create TAG</a>--}}
-{{--                    </li>--}}
-{{--                    <li class="nav-item active">--}}
-{{--                        <a class="nav-link" href="{{route('categories.create')}}">Create CATEGORY</a>--}}
-{{--                    </li>--}}
+                    <li class="nav-item ">
+                        <a class="nav-link" href="{{route('tags.index')}}">TAGS</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{route('categories.index')}}">CATEGORIES</a>
+                    </li>
                 @endif
                 <li class="nav-item">
                     <a class="nav-link" href="{{route('about')}}">About</a>

@@ -12,6 +12,16 @@
             <div class="card-body">
                 <h2 class="card-title">{{ $post->title }}</h2>
                 <p class="card-text">{{ $post->body }}</p>
+                 <ul>Category :
+               @foreach($post->categories()->get() as $category)
+                   <li>{{ $category->title }}</li>
+               @endforeach
+               </ul>
+                <ul>Tag :
+                    @foreach($post->tags()->get() as $tag)
+                        <li>{{ $tag->title }}</li>
+                    @endforeach
+                </ul>
             </div>
             <div class="card-footer text-muted">
                 <div class="btn-group">
@@ -29,14 +39,10 @@
                     @endphp
                 </h6>
                 @php echo "created at : " . $post->created_at ;
-                    if($post->created_at != $post->updated_at)  echo "updated at : " . $post->updated_at ;
+                    if($post->created_at != $post->updated_at)  echo "<br>" . "updated at : " . $post->updated_at ;
                 @endphp
 
-                {{-- <ul>
-                @foreach($post->categories()->get() as $category)
-                    <li>{{ $category->name }}</li>
-                @endforeach
-                </ul> --}}
+
 
             </div>
         </div>

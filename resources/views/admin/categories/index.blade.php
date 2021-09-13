@@ -2,7 +2,8 @@
 
 
 @section('content')
-    <h2>All Posts</h2>
+    <a class="btn btn-primary d-block justify-content-end mt-3 mb-3 btn-lg" href="admin/categories/create">Create Category</a>
+    <h2>All Category</h2>
     <table class="table">
         <thead>
             <tr>
@@ -12,15 +13,15 @@
             </tr>
         </thead>
         <tbody>
-            @foreach($posts as $post)
+            @foreach($categories as $category)
                 <tr>
-                    <td>{{ $post->id }}</td>
-                    <td><a href="posts/{{ $post->id  }}">{{$post->title}} &rarr;</a></td>
+                    <td>{{ $category->id }}</td>
+                    <td><a href="categories/{{ $category->id  }}">{{$category->title}} &rarr;</a></td>
                     <td>
-                        <form action="/admin/posts/{{$post->id}}" method="post">
+                        <form action="/admin/categories/{{$category->id}}" method="post">
                             @csrf
                             @method('delete')
-                            <button class="btn btn-danger">delete</button>
+                            <button class="btn btn-danger btn-lg">DELETE</button>
                         </form>
                     </td>
                 </tr>

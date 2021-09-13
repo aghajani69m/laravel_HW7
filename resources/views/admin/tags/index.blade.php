@@ -2,7 +2,8 @@
 
 
 @section('content')
-    <h2>All Posts</h2>
+    <a class="btn btn-primary d-block justify-content-end mt-3 mb-3 btn-lg" href="admin/tags/create">Create Tag</a>
+    <h2>All Tags</h2>
     <table class="table">
         <thead>
             <tr>
@@ -12,15 +13,15 @@
             </tr>
         </thead>
         <tbody>
-            @foreach($posts as $post)
+            @foreach($tags as $tag)
                 <tr>
-                    <td>{{ $post->id }}</td>
-                    <td><a href="posts/{{ $post->id  }}">{{$post->title}} &rarr;</a></td>
+                    <td>{{ $tag->id }}</td>
+                    <td><a href="tags/{{ $tag->id  }}">{{$tag->title}} &rarr;</a></td>
                     <td>
-                        <form action="/admin/posts/{{$post->id}}" method="post">
+                        <form action="/admin/tags/{{$tag->id}}" method="post">
                             @csrf
                             @method('delete')
-                            <button class="btn btn-danger">delete</button>
+                            <button class="btn btn-danger btn-lg ">DELETE</button>
                         </form>
                     </td>
                 </tr>

@@ -49,9 +49,8 @@ class PostController extends Controller
         $validate_data = $request->validated();
         $validate_data['slug'] =  str_replace(" ","-",$validate_data['title']);
         $post = auth()->user()->posts()->create($validate_data);
-
-//        $post->categories()->attach($validate_data['categories']);
-
+        $post->categories()->attach($validate_data['categories']);
+        $post->tags()->attach($validate_data['tags']);
         return redirect('admin/posts');
     }
 
@@ -63,7 +62,7 @@ class PostController extends Controller
      */
     public function show(Post $post)
     {
-        return view('singleShow' , compact('post'));
+        return view('admin.posts.singleShow' , compact('post'));
     }
 
     /**
@@ -91,10 +90,10 @@ class PostController extends Controller
     public function update(PostRequest $request, Post $post)
     {
         $validate_data = $request->validated();
-
+        $validate_data['slug'] =  str_replace(" ","-",$validate_data['title']);
         $post->update($validate_data);
-
-//        $post->categories()->sync($validate_data['categories']);
+        $post->categories()->sync($validate_data['categories']);
+        $post->tags()->sync($validate_data['tags']);
         return back();
     }
 

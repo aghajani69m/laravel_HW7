@@ -2,6 +2,7 @@
 
 
 @section('content')
+    <a class="btn btn-primary d-block justify-content-end mt-3 mb-3 btn-lg" href="admin/posts/create">Create Post</a>
     <h2>All Posts</h2>
     <table class="table">
         <thead>

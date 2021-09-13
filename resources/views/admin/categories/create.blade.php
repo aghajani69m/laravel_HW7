@@ -2,7 +2,7 @@
 
 
 @section('content')
-    <h2>Create Post</h2>
+    <h2>Create Category</h2>
     @if($errors->any())
         <div class="alert alert-danger">
             <ul>
@@ -15,7 +15,7 @@
     <form action="/admin/categories" method="post">
         @csrf
         <div class="form-group">
-            <label for="title">title :</label>
+            <label for="title">Title :</label>
             <input type="text" name="title" class="form-control">
         </div>
         <br>

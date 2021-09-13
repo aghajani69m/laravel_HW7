@@ -3,7 +3,10 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\TagRequest;
+use App\Models\Tag;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class TagController extends Controller
 {
@@ -14,7 +17,8 @@ class TagController extends Controller
      */
     public function index()
     {
-        //
+        $tags = Tag::all();
+        return view('admin.tags.index')->with('tags',$tags);
     }
 
     /**
@@ -24,7 +28,8 @@ class TagController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.tags.create');
+
     }
 
     /**
@@ -33,9 +38,12 @@ class TagController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(TagRequest $request)
     {
-        //
+        $validate_data = $request->validated();
+        $validate_data['slug'] =  str_replace(" ","-",$validate_data['title']);
+        Tag::query()->create($validate_data);
+        return redirect('admin/tags');
     }
 
     /**
@@ -44,9 +52,10 @@ class TagController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Tag $tag)
     {
-        //
+        return view('admin.tags.singleShow' , compact('tag'));
+
     }
 
     /**
@@ -55,10 +64,14 @@ class TagController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Tag $tag)
     {
-        //
+        if(Auth::check()){     return view('admin.tags.edit', [
+            'tag' => $tag
+        ]);
+        }else return back();
     }
+
 
     /**
      * Update the specified resource in storage.
@@ -67,9 +80,12 @@ class TagController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(TagRequest $request, Tag $tag)
     {
-        //
+        $validate_data = $request->validated();
+        $validate_data['slug'] =  str_replace(" ","-",$validate_data['title']);
+        $tag->update($validate_data);
+        return back();
     }
 
     /**
@@ -78,8 +94,9 @@ class TagController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Tag $tag)
     {
-        //
+        $tag->delete();
+        return redirect('admin/tags');
     }
 }
