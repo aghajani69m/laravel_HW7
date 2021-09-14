@@ -38,8 +38,8 @@
                         echo \App\Models\User::find("$post->user_id")->name;
                     @endphp
                 </h6>
-                @php echo "created at : " . $post->created_at ;
-                    if($post->created_at != $post->updated_at)  echo "<br>" . "updated at : " . $post->updated_at ;
+                @php echo "created at : " . jdate($post->created_at) ;
+                    if($post->created_at != $post->updated_at)  echo "<br>" . "updated at : " . jdate($post->updated_at) ;
                 @endphp
 
 

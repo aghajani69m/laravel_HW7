@@ -27,11 +27,15 @@
             </div>
 
             <div class=" justify-content-between align-items-center card-footer text-muted">
-                <h6>Posted By : <strong>@php
+                <h6>Posted By : <strong>
+                @php
                 echo \App\Models\User::find("$post->user_id")->name;
                 @endphp
-                    </strong></h6>
-               <h6> Posted on : {{$post->created_at }}</h6>
+                                </strong><br>
+                @php
+                 echo "created at : " . jdate($post->created_at) ;
+                    if($post->created_at != $post->updated_at)  echo "<br>" . "updated at : " . jdate($post->updated_at) ;
+                @endphp
             </div>
 
 
