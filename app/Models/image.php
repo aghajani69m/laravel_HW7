@@ -18,4 +18,9 @@ class image extends Model
         'alt',
         'path',
     ];
+
+    public function imageable()
+    {
+        return $this->morphTo();
+    }
 }
