@@ -2,7 +2,7 @@
 
 
 @section('content')
-    <a class="btn btn-primary d-block justify-content-end mt-3 mb-3 btn-lg" href="admin/categories/create">Create Category</a>
+    <a class="btn btn-primary d-block justify-content-end mt-3 mb-3 btn-lg" href="categories/create">Create Category</a>
     <h2>All Category</h2>
     <table class="table">
         <thead>

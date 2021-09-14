@@ -7,6 +7,7 @@ use App\Http\Requests\PostRequest;
 use App\Models\Post;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class PostController extends Controller
 {
@@ -48,6 +49,7 @@ class PostController extends Controller
     {
         $validate_data = $request->validated();
         $validate_data['slug'] =  str_replace(" ","-",$validate_data['title']);
+        $validate_data['name'] = Auth::user()->name;
         $post = auth()->user()->posts()->create($validate_data);
         $post->categories()->attach($validate_data['categories']);
         $post->tags()->attach($validate_data['tags']);

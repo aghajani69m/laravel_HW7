@@ -2,7 +2,7 @@
 
 
 @section('content')
-    <a class="btn btn-primary d-block justify-content-end mt-3 mb-3 btn-lg" href="admin/tags/create">Create Tag</a>
+    <a class="btn btn-primary d-block justify-content-end mt-3 mb-3 btn-lg" href="tags/create">Create Tag</a>
     <h2>All Tags</h2>
     <table class="table">
         <thead>

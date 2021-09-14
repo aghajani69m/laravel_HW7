@@ -3,6 +3,7 @@
 namespace Database\Factories;
 
 use App\Models\Post;
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class PostFactory extends Factory
@@ -24,7 +25,8 @@ class PostFactory extends Factory
             'user_id'=> rand(1,50),
             'title' => $title = $this->faker->text(50),
             'slug' => str_replace(" ","-",$title),
-            'body' =>$this->faker->paragraph(rand(5,20))
+            'body' =>$this->faker->paragraph(rand(5,20)),
+            'name' => $this->faker->name,
         ];
     }
 }

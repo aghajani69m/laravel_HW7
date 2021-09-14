@@ -1,18 +1,18 @@
 <?php
 
-namespace Database\Factories\Admin;
+namespace Database\Factories;
 
-use App\Models\Admin\Category;
+use App\Models\image;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
-class CategoryFactory extends Factory
+class ImageFactory extends Factory
 {
     /**
      * The name of the factory's corresponding model.
      *
      * @var string
      */
-    protected $model = Category::class;
+    protected $model = image::class;
 
     /**
      * Define the model's default state.
